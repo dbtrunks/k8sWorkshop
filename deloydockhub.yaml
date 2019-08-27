@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8sworkshop
+spec:
+  selector:
+      matchLabels:
+        app: k8sworkshop
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: k8sworkshop
+    spec:
+      containers:
+      - name: k8sworkshop
+        image: pc1dockerimages.azurecr.io/k8sworkshop:v1
+        ports:
+        - containerPort: 8080     
+      imagePullSecrets:
+      - name: regcred

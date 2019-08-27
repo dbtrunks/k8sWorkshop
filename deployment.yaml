@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8sworkshop
+spec:
+  selector:
+      matchLabels:
+        app: k8sworkshop
+  replicas: 2
+  template:
+      metadata:
+        labels:
+            app: k8sworkshop
+      spec:
+        containers:
+        - name: k8sworkshop
+          image: pcudnik/k8sworkshop:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+          - containerPort: 80
